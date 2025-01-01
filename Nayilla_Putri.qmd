@@ -1,0 +1,120 @@
+---
+
+title: "Perubahan Volume dan Nilai Ekspor Tembaga Indonesia Berdasarkan Negara Tujuan Tahun 2022-2023"
+subtitle: "Metode Penelitian Politeknik APP Jakarta"
+author: "Nayilla Putri Ramadhanti"
+date: 2023-12-28
+number-sections: true
+format:
+  html: default
+  docx: default
+---
+
+![](poltekapp.jpg){fig-align="center"}
+
+## Pendahuluan
+
+### Latar belakang
+
+Indonesia merupakan salah satu negara penghasil tembaga terbesar di dunia. Sebagai komoditas strategis, tembaga memiliki peran penting dalam mendukung perekonomian nasional, terutama melalui sektor ekspor. Dalam kurun waktu 2022-2023, berbagai faktor global dan domestik memengaruhi ekspor tembaga Indonesia. Secara global, gangguan rantai pasok akibat perang Rusia-Ukraina, fluktuasi harga tembaga di pasar internasional, serta perlambatan ekonomi di negara-negara tujuan ekspor seperti China dan Eropa, memberikan dampak langsung terhadap permintaan tembaga.
+
+### Ruang lingkup
+
+Penelitian ini mencakup periode waktu tahun 2022 hingga 2023. Rentang waktu ini dipilih untuk menganalisis perubahan volume dan nilai ekspor tembaga Indonesia selama dua tahun terakhir, dengan mempertimbangkan berbagai dinamika yang memengaruhi perdagangan internasional, seperti kebijakan hilirisasi mineral di Indonesia dan fluktuasi harga tembaga global.
+
+### Rumusan masalah
+
+Beberapa rumusan masalah yang dapat diajukan untuk menjawab tujuan penelitian adalah sebagai berikut:
+
+1.  Bagaimana perubahan volume ekspor tembaga Indonesia ke negara-negara tujuan utama selama periode 2022-2023?
+2.  Bagaimana perubahan nilai ekspor tembaga Indonesia selama periode 2022-2023, dan apa saja faktor yang memengaruhi perubahan tersebut?
+3.  Apa saja negara tujuan utama ekspor tembaga Indonesia, dan bagaimana kontribusinya terhadap total volume dan nilai ekspor pada periode 2022-2023?
+
+### Tujuan dan manfaat penelitian
+
+penelitian ini bertujuan untuk mengidentifikasi tren perdagangan tembaga indonesia di pasar internasional dan membantu meningkatkan daya saing tembaga indonesia di pasar global melalui analisis berbasis data.
+
+### Package
+
+Ini tidak wajib ada di tulisan anda tapi anda dapat menunjukkan Packages yang digunakan antara lain sebagai berikut:
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(WDI)
+```
+
+## Studi pustaka
+
+Salah satu bagian yang penting dalam penelitian adalah melakukan studi literatur, yaitu membaca dari berbagai sumber sesuai dengan topik yang diteliti. Ekspor tembaga Indonesia menunjukkan tren peningkatan yang signifikan, meskipun ada tantangan seperti gangguan rantai pasokan dan ketidakpastian ekonomi global. Penurunan harga tembaga global pada tahun 2023 juga berdampak pada nilai ekspor meskipun volume ekspor tetap stabil atau meningkat, mencerminkan adanya upaya diversifikasi pasar oleh Indonesia untuk mengurangi ketergantungan pada satu negara tujuan utama.
+
+## Metode penelitian
+
+### Data 2022-2023
+
+| negara   | ekspor 2023 | ekspor 2022 |
+|----------|-------------|-------------|
+| tiongkok | 704,2USD    | 650,5 USD   |
+| malaysia | 527,5USD    | 833,6 USD   |
+| vietnam  | 424,8USD    | 394,8 USD   |
+| thailand | 184,7USD    | 447,2 USD   |
+| Austrlia | 43,3USD     | 13,1 USD    |
+| Lainnya  | 171,4USD    | 193,5 USD   |
+| total    | 2055,9USD   | 2532,8USD   |
+
+penelitian ini menggunakan data bps
+
+```{r}
+Data_tembaga<- data.frame(tahun= c (2022,2023),Berat_bersih=c(302.6,257.7), Nilai_FOB= c(2532.8,2055.9))
+#| label: fig-mpg
+#| #| fig-cap: "Perubahan Volume dan Nilai Ekspor Tembaga Indonesia Berdasarkan Negara Tujuan Tahun 2022-2023"
+ggplot(tembaga, aes(tembaga$...5,tembaga$`Negara Tujuan`,tembaga$`2023`)) +
+  geom_point(size=4) +
+  scale_color_viridis_c() +
+theme_minimal()
+```
+
+### Metode analisis
+
+Metode analisis yang digunakan yaitu Regresi Linear Sederhana. Tujuannya untuk memprediksi atau menjelaskan bagaimana perubahan suatu X (variabel bebas) mempengaruhi Y (variabel terikat).
+
+$$
+y_{t}=\beta_0 + \beta_1 x_t+e
+$$ di mana $y_t$ adalah berat_bersih dan $x_t$ adalah Nilai_FOB.
+
+## Pembahasan
+
+### Pembahasan masalah
+
+Pada bagian ini dapat ditampilkan data dan visualisasi data yang telah dikumpulkan.
+
+### Analisis masalah
+
+Hasil regresinya adalah
+
+```{r}
+reg2<-lm(data=Data_tembaga,tembaga$`Negara Tujuan`~tembaga$`2022`)
+summarise(tembaga)
+```
+
+```{r}
+library(readxl)
+summary(tembaga)
+
+```
+
+![](images/Screenshot%20(44).png)
+
+![](SUMMARY%20OUTPUT%202023.jpg)
+
+## Kesimpulan
+
+perubahan volume dan nilai ekspor tembaga Indonesia berdasarkan negara tujuan tahun 2022-2023 menunjukkan adanya dinamika yang dipengaruhi oleh fluktuasi harga global, permintaan dari negara tujuan utama, dan kebijakan domestik. Meskipun terdapat tantangan seperti penurunan harga komoditas, volume ekspor tetap stabil atau meningkat, mencerminkan adaptasi pasar dan diversifikasi tujuan ekspor. Hal ini menunjukkan pentingnya strategi yang responsif terhadap kondisi pasar internasional untuk menjaga kontribusi sektor tembaga terhadap perekonomian nasional.
+
+## Referensi
+
+Badan Pusat Statistik Indonesia. (5 Juli 2024). Analisis Komoditas Ekspor, 2019-2023, Sektor Pertanian, Kehutanan, dan Perikanan; Sektor Industri Pengolahan; dan Sektor Pertambangan dan Lainnya.
+
+Putri Fadia, A., 2024. ANALISIS KOMPARASI DAYA SAING EKSPOR KOMODITAS TEMBAGA INDONESIA DI PASAR TEMBAGA CHINA.
+
+Ardiyanti, S.T., Amaliah, S., Pratiwi, R.A. and Gunadi, D., 2023. Potensi dampak kebijakan larangan ekspor mineral logam. Trade Policy Journal, 2(1), pp.53-64.
